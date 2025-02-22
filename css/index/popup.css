@@ -1,0 +1,19 @@
+#popUp-bg {
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    background: rgba(34, 34, 34, 0.333);
+
+    .popup-window {
+        position: absolute;
+        left: 50%;
+        right: 50%;
+        top: 50%;
+        bottom: 50%;
+        width: 90vw;
+        height: 70vh;
+    }
+}
+#popUp-bg.hide {
+    display: none;
+}
