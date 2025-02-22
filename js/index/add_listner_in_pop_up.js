@@ -8,20 +8,32 @@ class PopUpWork {
 	targetStartData = document.querySelector('#target-start-data');
 	targetfinishData = document.querySelector('#target-finish-data');
 	stepsToTarget = document.querySelector('#steps-to-target');
-	
 
-	popUpClose(){
+
+	popUpClose() {
 		console.log('сработала функция закрытия окна')
 		this.popUpBg.classList.add('hide');
 	}
-	popUpOpen(){
+	popUpOpen() {
 		console.log('сработала функция открытия окна')
 		this.popUpBg.classList.remove('hide');
 	}
-	popUpClear() {
-		console.log(this.popUpBg);
+	popUpClearData() {
+		console.log('сработала функция стирания данных')
+		this.targetName.value = "";
+		this.targetStartData.value = "";
+		this.targetfinishData.value = "";
+		[...this.stepsToTarget.children].forEach((e,i) => {
+			if( i == 0) {
+				e.children[1].textContent ='';
+			} else {
+				this.stepsToTarget.removeChild(e);
+			}
+		})
+		 return 'данные очищены'
 	}
-	getPopUpData(){
+	getPopUpData() {
+		console.log('сработала функция получения данных')
 		return {
 			name: this.targetName.value,
 			createDate: this.targetStartData.value,
@@ -29,6 +41,19 @@ class PopUpWork {
 			listOfSteps: [...this.stepsToTarget.children].map(e => e.children[1].textContent)
 		}
 
+	}
+	setPopUpData(obj) {
+		console.log('сработала функция установки данных')
+		this.targetName.value = obj.name;
+		this.targetStartData.value = obj.createDate;
+		this.targetfinishData.value = obj.finishDate;
+		[...this.stepsToTarget.children].forEach((e) => {
+				this.stepsToTarget.removeChild(e);
+		})
+		obj.listOfSteps.forEach(e => {
+			this.stepsToTarget.innerHTML += `<li><button class="update-step" title="редактировать шаг">edit</button><span class="step-text">${e}</span><button class="delete-step" title="удалить шаг">d</button></li>`
+		})
+		return 'данные очищены'
 	}
 
 	// removeAllEventListener() {
@@ -59,7 +84,7 @@ class PopUpWork {
 	// };
 
 	// _exLastRecord(node) {
-		
+
 
 	// 	let lastLi = node.children[[...node.children].length - 1];
 	// 	let recordInLi = lastLi.children[1].textContent;

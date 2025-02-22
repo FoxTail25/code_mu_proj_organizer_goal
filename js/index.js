@@ -11,6 +11,8 @@ addTargetBtn.addEventListener('click', () => popUpWork.popUpOpen());
 PopUpCloseBtn.addEventListener('click', () => popUpWork.popUpClose());
 
 console.log(popUpWork.getPopUpData())
+console.log(popUpWork.popUpClearData())
+console.log(popUpWork.getPopUpData())
 
 // доступ к контейнеру целей
 let targetContainer = document.getElementById('target-container')
