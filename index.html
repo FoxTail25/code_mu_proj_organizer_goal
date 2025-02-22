@@ -71,12 +71,50 @@
     </footer>
     <div id="popUp-bg" class="hide">
       <div class="popup-window">
-        <button id="popUpCloseBtn">закрыть</button>
+        <button id="popUpCloseBtn" title="закрыть без сохранения">
+          <span></span>
+          <span></span>
+        </button>
+        <label>
+          Название цели
+          <input id="target-name" type="text" value="test">
+        </label>
+        <label>
+          дата создания
+          <input id="target-start-data" type="date">
+        </label>
+        <label>
+          дата достижения
+          <input id="target-finish-data" type="date">
+        </label>
+        <div class="steps_block">
+          <h3>
+            Cписок шагов для достижения цели
+          </h3>
+          <ol id="steps-to-target" >
+            <li><button class="update-step" title="редактировать шаг">edit</button><span class="step-text">1</span><button class="delete-step" title="удалить шаг">d</button></li>
+            <li><button class="update-step" title="редактировать шаг">edit</button><span class="step-text">2</span><button class="delete-step" title="удалить шаг">d</button></li>
+            <li><button class="update-step" title="редактировать шаг">edit</button><span class="step-text">3</span><button class="delete-step" title="удалить шаг">d</button></li>
+          </ol>
+          <button id="add-step">Добавить шаг</button>
+          <button id="add-target">Сохранить цель</button>
+        </div>
+      </div>
+      <div id="popup-warning-bg" class="hide">
+        <div class="warning-window">
+          Прошлый шаг не заполнен. Нажмите на 
+          <img src="./img/ico/writebtn.svg" alt="символ редактирования">
+          и отредактируйте предыдущий шаг.
+
+          <button id="warnin-btn-close">Всё ясно!</button>
+        </div>
       </div>
     </div>
     <div class="bg_html">
       <div class="container">
-        <div class="bg_page"></div>
+        <div class="bg_page">
+         
+        </div>
       </div>
     </div>
     <script src="./js/index.js" type="module"></script>

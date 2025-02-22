@@ -1,17 +1,16 @@
+import { popUpWork } from './index/add_listner_in_pop_up.js';
 import { localStorageWork } from './index/local_stor.js';
 import { userTarget } from './index/targets.js';
 import { goalPresentWork } from './index/targetVidj.js';
 
 
 // элементы PopUp
-let popUpBg = document.getElementById('popUp-bg')
-let addTargetBtn = document.getElementById('addTargetBtn');
-let popUpCloseBtn = document.getElementById('popUpCloseBtn');
+const addTargetBtn = document.getElementById('addTargetBtn');
+const PopUpCloseBtn = document.getElementById('popUpCloseBtn');
+addTargetBtn.addEventListener('click', () => popUpWork.popUpOpen());
+PopUpCloseBtn.addEventListener('click', () => popUpWork.popUpClose());
 
-function openAndClosePopUp() {
-    let popUpBgOpen = [...popUpBg.classList].includes('hide')
-
-}
+console.log(popUpWork.getPopUpData())
 
 // доступ к контейнеру целей
 let targetContainer = document.getElementById('target-container')

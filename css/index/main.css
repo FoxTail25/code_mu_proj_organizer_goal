@@ -4,4 +4,7 @@ main {
 
 .main {
 
+	div#goal-presentation-sample {
+		color: transparent;
+	}
 }

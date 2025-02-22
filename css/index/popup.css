@@ -1,19 +1,174 @@
 #popUp-bg {
-    position: fixed;
-    height: 100vh;
-    width: 100vw;
-    background: rgba(34, 34, 34, 0.333);
-
-    .popup-window {
-        position: absolute;
-        left: 50%;
-        right: 50%;
-        top: 50%;
-        bottom: 50%;
-        width: 90vw;
-        height: 70vh;
-    }
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(2px);
+  top: 0vh;
+  transition: top 0.2s;
 }
 #popUp-bg.hide {
-    display: none;
+  top: -100vh;
+  transition: top 0.2s 0.2s;
+  .popup-window {
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
 }
+
+.popup-window {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 90vw;
+  max-width: 600px;
+  height: 80vh;
+  max-height: 600px;
+  opacity: 1;
+  padding: 10px;
+  box-sizing: border-box;
+  transition: opacity 0.3s 0.2s;
+
+  border: 1px solid black;
+  border-radius: 10px;
+
+  > :nth-child(2) {
+    margin-top: 20px;
+  }
+  label {
+    display: block;
+    margin-top: 10px;
+    input {
+      display: block;
+      padding: 5px;
+      border-radius: 5px;
+      border: 1px solid black;
+      width: calc(100% - 20px);
+    }
+  }
+  .steps_block {
+    margin-top: 20px;
+    h3 {
+      text-align: center;
+    }
+    ol {
+      width: calc(100% - 20px);
+      padding-left: 20px;
+      max-height: 30vh;
+      overflow: auto;
+
+      li {
+        margin-top: 20px;
+        width: 100%;
+        >* {
+            display: inline-block;
+        }
+        button {
+                width: 25px;
+                color: transparent;
+                cursor: pointer;
+                border: none;
+            }
+        button.update-step {
+            background: no-repeat url(../../img/ico/writebtn.svg) center /contain;
+        }
+        button.save-step {
+            background: no-repeat url(../../img/ico/save.svg) center /contain;
+        }
+        button.delete-step {
+            background: no-repeat url(../../img/ico/deletebtn.svg) center /contain;
+        }
+
+        span {
+            width: calc(100% - 50px);
+        }
+        input {
+            width: calc(100% - 60px);
+            
+        }
+      }
+    }
+    button#add-target,
+    button#add-step {
+      display: block;
+      border-radius: 5px;
+      padding: 3px;
+      margin: 5px;
+      border: 1px solid black;
+      &:last-child {
+        margin-left: auto;
+      }
+    }
+  }
+}
+
+#popUpCloseBtn {
+  background: red;
+  border-radius: 50%;
+  border: none;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  padding: 0;
+  cursor: pointer;
+  transition: filter 0.2s;
+  &:hover {
+    filter: drop-shadow(0px 0px 5px red);
+  }
+  span {
+    width: 10px;
+    height: 2px;
+    background: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: block;
+    &:first-child {
+      transform: translate(-50%, -50%) rotate(45deg);
+    }
+    &:last-child {
+      transform: translate(-50%, -50%) rotate(-45deg);
+    }
+  }
+}
+
+#popup-warning-bg{
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    z-index: 2;
+    background:rgba(235, 51, 51, 0.527);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .warning-window {
+        border-radius: 10px;
+        text-align: center;
+        width: 80%;
+        background:white;
+        padding: 20px;
+        img {
+            width: 25px;
+            height: 25px;
+        }
+    }
+
+    #warnin-btn-close {
+        display: block;
+        margin: 0 auto;
+        margin-top: 40px;
+        border-radius:5px;
+        border: 1px solid black;
+        padding: 5px;
+
+    }
+
+}
+#popup-warning-bg.hide {
+    display:none
+}
+
+
