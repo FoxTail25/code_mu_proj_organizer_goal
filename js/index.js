@@ -13,6 +13,13 @@ PopUpCloseBtn.addEventListener('click', () => popUpWork.popUpClose());
 console.log(popUpWork.getPopUpData())
 console.log(popUpWork.popUpClearData())
 console.log(popUpWork.getPopUpData())
+console.log(popUpWork.setPopUpData({
+	id: "",
+	name: "test2",
+	createDate: '12',
+	finishDate: "14",
+	ListOfSteps: [1,2,3],
+}))
 
 // доступ к контейнеру целей
 let targetContainer = document.getElementById('target-container')

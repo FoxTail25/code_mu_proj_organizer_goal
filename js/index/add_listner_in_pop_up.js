@@ -53,7 +53,7 @@ class PopUpWork {
 		obj.listOfSteps.forEach(e => {
 			this.stepsToTarget.innerHTML += `<li><button class="update-step" title="редактировать шаг">edit</button><span class="step-text">${e}</span><button class="delete-step" title="удалить шаг">d</button></li>`
 		})
-		return 'данные очищены'
+		return 'данные установлены'
 	}
 
 	// removeAllEventListener() {
