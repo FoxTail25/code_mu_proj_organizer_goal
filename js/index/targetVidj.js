@@ -37,8 +37,17 @@ class TargetVidget {
         // console.log('добавлено Время конца')
         htmlElement.textContent = obj.finishDate
       } else if(htmlElement.className == 'step-details'){
-
         this._addTargetSteps(htmlElement, obj.listOfSteps)
+      } else if(htmlElement.className == 'edit-target-btn'){
+        htmlElement.addEventListener('click', (e)=> console.log('edit', e.target.parentElement.dataset))
+      }  else if(htmlElement.className == 'delete-target-btn'){
+        htmlElement.addEventListener('click', (e)=> {
+          
+          let id = e.target.parentElement.dataset.id
+          console.log('delete', id)
+
+          this.deleteTarget(id)
+        })
       }
     })
     this._addTargetInTargetContainer(newTargetNode)
@@ -46,6 +55,15 @@ class TargetVidget {
   _addTargetSteps(node, arr){
     // console.log('noda', node, 'arrSteps', arr)
     arr.forEach(e => node.innerHTML +=`<div class="step">${e}</div>`)
+  }
+  _findTargetById(id){
+    let item =  this.targetContainer.querySelector(`[data-id="${id}"]`)
+    return item
+  }
+  deleteTarget(id){
+    let elem = this._findTargetById(id)
+    console.log(elem)
+    this.targetContainer.removeChild(elem)
   }
   
 }

@@ -30,8 +30,15 @@ userTarget.addTarget({
 });
 
 // const target = userTarget.getTargetList()[0];
+function createTargetList(){
+	userTarget.getTargetList().forEach(e => goalPresentWork.createTarget(e))
+}
+createTargetList()
+// let id = userTarget.getTargetList()[0].id
+function td(id) {
 
-userTarget.getTargetList().forEach(e => goalPresentWork.createTarget(e))
+	goalPresentWork.deleteTarget(id)
+}
 
 // addTargetBtn.addEventListener('click', () => popUpWork.popUpOpen(testPopUpDataObj));
 // PopUpCloseBtn.addEventListener('click', () => popUpWork.popUpClose());
