@@ -1,7 +1,6 @@
 class PopUpWork {
   popUpBg = document.querySelector("#popUp-bg");
-//   arrEventListenerElements = [];
-
+  //   arrEventListenerElements = [];
 
   targetName = document.querySelector("#target-name");
   targetStartData = document.querySelector("#target-start-data");
@@ -9,9 +8,9 @@ class PopUpWork {
   stepsToTarget = document.querySelector("#steps-to-target");
 
   popUpClose() {
-    console.log("сработала функция закрытия окна");
+    // console.log("сработала функция закрытия окна");
     this.popUpBg.classList.add("hide");
-    console.log(this.getPopUpData());
+    console.log(this.getPopUpData());        
     this.popUpClearData();
   }
   popUpOpen(obj) {
@@ -64,67 +63,89 @@ class PopUpWork {
   addListenerOnTargetSteps() {
     console.log("сработал addListenerOnTargetSteps");
     this._stepsAddListenerToUpdateBtn();
-    this._stepsAddListenerToSpan();
     this._stepsAddListenerToDeleteBtn();
   }
   _stepsAddListenerToUpdateBtn() {
     let arrUpdateBtn = [...this.stepsToTarget.children].map(
       (e) => e.children[0]
     );
-    console.log("сработал _stepsUpdateBtn", arrUpdateBtn);
     arrUpdateBtn.forEach((e) =>
       e.addEventListener("click", _changeSpanToInput)
     );
 
+    let arrSpan = [...this.stepsToTarget.children].map((e) => e.children[1]);
+    arrSpan.forEach((e) => e.addEventListener("click", _changeSpanToInput));
+
     function _changeSpanToInput(event) {
-      console.log("_changeSpanToInput");
+    //   console.log('_changeSpanToInput');
+    //   console.log(event);
+    //   console.dir(event.target);
+      let changeBtn;
+      if (event.target.nodeName == "BUTTON") {
+        changeBtn = event.target;
+      }
+      if (event.target.nodeName == "SPAN") {
+        changeBtn = event.target.previousSibling;
+      }
       let input = document.createElement("input");
       let parentElem = event.target.parentElement;
-      let span = event.target.nextSibling;
+      let span = parentElem.querySelector("span");
       let info = span.textContent;
       input.value = info;
       parentElem.removeChild(span);
-      event.target.insertAdjacentElement("afterend", input);
+      changeBtn.insertAdjacentElement("afterend", input);
       input.focus();
-      console.log("event.target", event.target);
-      event.target.removeEventListener("click", _changeSpanToInput);
-      event.target.removeEventListener("click", _changeSpanToInput);
-      event.target.classList.remove("add-step");
-      event.target.classList.add("save-step");
-      event.target.setAttribute("title", "сохранить");
-      event.target.addEventListener("click", _saveUpdatedStep);
+      changeBtn.removeEventListener("click", _changeSpanToInput);
+      changeBtn.classList.remove("add-step");
+      changeBtn.classList.add("save-step");
+      changeBtn.setAttribute("title", "сохранить");
+      changeBtn.addEventListener("click", _saveUpdatedStep);
+      changeBtn.nextSibling.addEventListener("blur", blur);
     }
-    function _saveUpdatedStep(e) {
-      console.log("_saveUpdateBtnStep");
+    function blur(e) {
+    //   console.log("blur");
+      let flag = true;
+      try {
+        flag = e.relatedTarget.className != "update-step save-step";
+		// console.log(flag)
+	} catch {
+		flag = true;
+	}
+	if (flag) {
+		//   console.log(flag)
+        _saveUpdatedStep();
+      }
+    }
+    function _saveUpdatedStep(event) {
+      let saveBtn;
+      if (event?.target.innerHTML == "edit") {
+        saveBtn = event.target;
+      } else {
+        saveBtn = document.querySelector("button.save-step");
+      }
       let span = document.createElement("span");
-      let parentElem = e.target.parentElement;
-      let input = e.target.nextSibling;
+      let parentElem = saveBtn.parentElement;
+      let input = saveBtn.nextSibling;
       let info = input.value;
       span.textContent = info;
       parentElem.removeChild(input);
-      e.target.insertAdjacentElement("afterend", span);
-      e.target.removeEventListener("click", _saveUpdatedStep);
-      e.target.classList.remove("save-step");
-      e.target.classList.add("add-step");
-      e.target.setAttribute("title", "редактировать");
-      e.target.addEventListener("click", _changeSpanToInput);
+      saveBtn.insertAdjacentElement("afterend", span);
+      saveBtn.classList.remove("save-step");
+      saveBtn.classList.add("add-step");
+      saveBtn.setAttribute("title", "редактировать");
+
+      saveBtn.nextSibling.removeEventListener("blur", blur);
+      saveBtn.nextSibling.addEventListener("click", _changeSpanToInput);
+      saveBtn.removeEventListener("click", _saveUpdatedStep);
+      saveBtn.addEventListener("click", _changeSpanToInput);
     }
   }
-  _stepsAddListenerToSpan() {
-    let arrSpan = [...this.stepsToTarget.children].map((e) => e.children[1]);
-    console.log(arrSpan);
-    arrSpan.forEach((e) =>
-      e.addEventListener("click", console.log('!!!!!'))
-    );
-    //   function foo(){
-    // 	console.log(this)
-    //   }
-  }
+
   _stepsAddListenerToDeleteBtn() {
     let arrDeleteBtn = [...this.stepsToTarget.children].map(
       (e) => e.children[2]
     );
-    console.log("сработал _stepsDeleteeBtn", arrDeleteBtn);
+    // console.log("сработал _stepsDeleteeBtn", arrDeleteBtn);
     arrDeleteBtn.forEach((e) => e.addEventListener("click", deleteStep));
     function deleteStep(e) {
       let li = e.target.parentElement;

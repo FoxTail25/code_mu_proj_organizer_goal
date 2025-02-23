@@ -82,11 +82,12 @@
 
         span {
             width: calc(100% - 50px);
+            cursor:pointer;
         }
         input {
             width: calc(100% - 54px);
             border:none;
-            
+
             
         }
       }
