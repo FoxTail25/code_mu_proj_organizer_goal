@@ -1,4 +1,4 @@
-// import { popUpWork } from './index/pop_up_work.js';
+import { popUpWork } from './index/pop_up_work.js';
 import { localStorageWork } from "./index/local_stor.js";
 import { userTarget } from "./index/targets.js";
 import { goalPresentWork } from "./index/targetVidj.js";
@@ -6,6 +6,7 @@ import { goalPresentWork } from "./index/targetVidj.js";
 // элементы PopUp
 const addTargetBtn = document.getElementById("addTargetBtn");
 const PopUpCloseBtn = document.getElementById("popUpCloseBtn");
+addTargetBtn.addEventListener('click', popUpWork.popUpOpen)
 
 userTarget.addTarget({
   id: "",
@@ -35,10 +36,7 @@ function createTargetList(){
 }
 createTargetList()
 // let id = userTarget.getTargetList()[0].id
-function td(id) {
 
-	goalPresentWork.deleteTarget(id)
-}
 
 // addTargetBtn.addEventListener('click', () => popUpWork.popUpOpen(testPopUpDataObj));
 // PopUpCloseBtn.addEventListener('click', () => popUpWork.popUpClose());
