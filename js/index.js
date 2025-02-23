@@ -6,7 +6,7 @@ import { goalPresentWork } from "./index/targetVidj.js";
 // элементы PopUp
 const addTargetBtn = document.getElementById("addTargetBtn");
 const PopUpCloseBtn = document.getElementById("popUpCloseBtn");
-addTargetBtn.addEventListener('click', popUpWork.popUpOpen)
+addTargetBtn.addEventListener('click', () => popUpWork.popUpOpen())
 
 userTarget.addTarget({
   id: "",
