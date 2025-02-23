@@ -1,30 +1,51 @@
-import { popUpWork } from './index/pop_up_work.js';
-import { localStorageWork } from './index/local_stor.js';
-import { userTarget } from './index/targets.js';
-import { goalPresentWork } from './index/targetVidj.js';
-
+// import { popUpWork } from './index/pop_up_work.js';
+import { localStorageWork } from "./index/local_stor.js";
+import { userTarget } from "./index/targets.js";
+import { goalPresentWork } from "./index/targetVidj.js";
 
 // элементы PopUp
-const addTargetBtn = document.getElementById('addTargetBtn');
-const PopUpCloseBtn = document.getElementById('popUpCloseBtn');
-addTargetBtn.addEventListener('click', () => popUpWork.popUpOpen(testPopUpDataObj));
-PopUpCloseBtn.addEventListener('click', () => popUpWork.popUpClose());
+const addTargetBtn = document.getElementById("addTargetBtn");
+const PopUpCloseBtn = document.getElementById("popUpCloseBtn");
 
-let testPopUpDataObj= {
-	id: "",
-	name: "test2",
-	createDate: "2025-02-23",
-	finishDate: "2025-02-23",
-	listOfSteps: ['test1','test2','test3'],
-};
+userTarget.addTarget({
+  id: "",
+  name: "target1",
+  createDate: new Date(),
+  finishDate: "",
+  listOfSteps: [1, 2, 3],
+});
+userTarget.addTarget({
+  id: "",
+  name: "target2",
+  createDate: new Date(),
+  finishDate: "",
+  listOfSteps: [1, 2, 3],
+});
+userTarget.addTarget({
+  id: "",
+  name: "target3",
+  createDate: new Date(),
+  finishDate: "",
+  listOfSteps: [1, 2, 3],
+});
 
-// console.log(popUpWork.getPopUpData())
-// console.log(popUpWork.popUpClearData())
-// console.log(popUpWork.getPopUpData())
-// console.log(popUpWork.setPopUpData(testPopUpDataObj))
+// const target = userTarget.getTargetList()[0];
+
+userTarget.getTargetList().forEach(e => goalPresentWork.createTarget(e))
+
+// addTargetBtn.addEventListener('click', () => popUpWork.popUpOpen(testPopUpDataObj));
+// PopUpCloseBtn.addEventListener('click', () => popUpWork.popUpClose());
+
+// let testPopUpDataObj= {
+// 	id: "",
+// 	name: "test2",
+// 	createDate: "2025-02-23",
+// 	finishDate: "2025-02-23",
+// 	listOfSteps: ['test1','test2','test3'],
+// };
 
 // доступ к контейнеру целей
-let targetContainer = document.getElementById('target-container')
+// let targetContainer = document.getElementById('target-container')
 
-const userGoals = [];
-
+// const userGoals = [...userTarget.getTargetList()];
+// console.log('userGoals', userGoals)
