@@ -34,7 +34,7 @@ class Targets {
     name: "",
     createDate: new Date(),
     finishDate: "",
-    ListOfSteps: [],
+    listOfSteps: [],
   };
 }
 

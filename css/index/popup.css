@@ -84,7 +84,9 @@
             width: calc(100% - 50px);
         }
         input {
-            width: calc(100% - 60px);
+            width: calc(100% - 54px);
+            border:none;
+            
             
         }
       }
