@@ -94,7 +94,7 @@
         }
       }
     }
-    button#add-target,
+    button#add-target-btn,
     button#add-step {
       display: block;
       border-radius: 5px;

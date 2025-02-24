@@ -6,7 +6,7 @@ import { goalPresentWork } from "./index/targetVidj.js";
 // элементы PopUp
 const addTargetBtn = document.getElementById("addTargetBtn");
 const PopUpCloseBtn = document.getElementById("popUpCloseBtn");
-addTargetBtn.addEventListener('click', () => popUpWork.popUpOpen())
+addTargetBtn.addEventListener('click', () => popUpWork.popUpOpen(returnPopUpData, false))
 
 userTarget.addTarget({
   id: "",
@@ -38,11 +38,14 @@ function editTarget(id){
 	// console.log(id)
 	let target = userTarget.getTarget({id:[id]})
 	
-	popUpWork.popUpOpen(target)
+	popUpWork.popUpOpen(returnPopUpData, target)
 }
 // let id = userTarget.getTargetList()[0].id
 
-
+function returnPopUpData(dataFomPopUpBtn) {
+console.log('!!index!!')
+console.log(dataFomPopUpBtn)
+}
 // addTargetBtn.addEventListener('click', () => popUpWork.popUpOpen(testPopUpDataObj));
 // PopUpCloseBtn.addEventListener('click', () => popUpWork.popUpClose());
 
