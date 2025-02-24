@@ -14,55 +14,60 @@ class TargetVidget {
   }
 
   targetContainer = document.getElementById('target-container');
-  
+
   _addTargetInTargetContainer(target) {
     this.targetContainer.appendChild(target);
   }
-  
-  createTarget(obj){
-    console.log( obj);
+
+  createTarget(obj, func) {
+    console.log(obj);
     // console.log('tt',this.target)
     const newTargetNode = this.target.cloneNode(true)
     newTargetNode.dataset.id = obj.id
-    ;[...newTargetNode.children].forEach(htmlElement => {
-      if(htmlElement.className == 'name'){
-        htmlElement.textContent = obj.name;
-      }
-      else if(htmlElement.className == 'create_date'){
-        htmlElement.textContent = obj.createDate
-      }
-      else if(htmlElement.className == 'finish_date'){
-        htmlElement.textContent = obj.finishDate
-      } else if(htmlElement.className == 'step-details'){
-        this._addTargetSteps(htmlElement, obj.listOfSteps)
-      } else if(htmlElement.className == 'edit-target-btn'){
-        htmlElement.addEventListener('click', (e)=> console.log('edit', e.target.parentElement.dataset))
-      }  else if(htmlElement.className == 'delete-target-btn'){
-        htmlElement.addEventListener('click', (e)=> {
-          
-          let id = e.target.parentElement.dataset.id
-          console.log('delete', id)
+      ;[...newTargetNode.children].forEach(htmlElement => {
+        if (htmlElement.className == 'name') {
+          htmlElement.textContent = obj.name;
+        }
+        else if (htmlElement.className == 'create_date') {
+          htmlElement.textContent = obj.createDate
+        }
+        else if (htmlElement.className == 'finish_date') {
+          htmlElement.textContent = obj.finishDate
+        } else if (htmlElement.className == 'step-details') {
+          this._addTargetSteps(htmlElement, obj.listOfSteps)
+        } else if (htmlElement.className == 'edit-target-btn') {
+          // htmlElement.addEventListener('click', (e)=> console.log('edit', e.target.parentElement.dataset))
+          htmlElement.addEventListener('click', (e) => {
+            console.log('edit');
+            let id = e.target.parentElement.dataset.id
+            func(id)
+          })
+        } else if (htmlElement.className == 'delete-target-btn') {
+          htmlElement.addEventListener('click', (e) => {
 
-          this.deleteTarget(id)
-        })
-      }
-    })
+            let id = e.target.parentElement.dataset.id
+            console.log('delete', id)
+
+            this.deleteTarget(id)
+          })
+        }
+      })
     this._addTargetInTargetContainer(newTargetNode)
   }
-  _addTargetSteps(node, arr){
+  _addTargetSteps(node, arr) {
     // console.log('noda', node, 'arrSteps', arr)
-    arr.forEach(e => node.innerHTML +=`<div class="step">${e}</div>`)
+    arr.forEach(e => node.innerHTML += `<div class="step">${e}</div>`)
   }
-  _findTargetById(id){
-    let item =  this.targetContainer.querySelector(`[data-id="${id}"]`)
+  _findTargetById(id) {
+    let item = this.targetContainer.querySelector(`[data-id="${id}"]`)
     return item
   }
-  deleteTarget(id){
+  deleteTarget(id) {
     let elem = this._findTargetById(id)
     console.log(elem)
     this.targetContainer.removeChild(elem)
   }
-  
+
 }
 
 export const goalPresentWork = new TargetVidget(newGoalPresentation);

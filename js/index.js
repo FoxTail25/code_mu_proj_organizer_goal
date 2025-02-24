@@ -32,9 +32,15 @@ userTarget.addTarget({
 
 // const target = userTarget.getTargetList()[0];
 function createTargetList(){
-	userTarget.getTargetList().forEach(e => goalPresentWork.createTarget(e))
+	userTarget.getTargetList().forEach(e => goalPresentWork.createTarget(e, editTarget))
 }
 createTargetList()
+
+function editTarget(id){
+	console.log('сработала функция editTarget in index.js')
+	console.log(id)
+	popUpWork.popUpOpen(id)
+}
 // let id = userTarget.getTargetList()[0].id
 
 

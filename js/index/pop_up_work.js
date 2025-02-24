@@ -26,7 +26,8 @@ class PopUpAllWork {
     this.popUpCloseBtn.addEventListener('click', ()=> this.popUpClose());
   }
 
-  popUpOpen() {
+  popUpOpen(popUpData = false) {
+    console.log('сработал console.log при открытии popUp', popUpData)
     this._createPopUp();
   }
   popUpClose() {
