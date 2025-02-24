@@ -1,5 +1,5 @@
 footer {
-	background: rgb(226, 226, 226);
+	background:var(--headerAndFooterBgColor);
 	padding: 5px 0;
 }
 .footer {

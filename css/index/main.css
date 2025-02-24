@@ -1,10 +1,64 @@
 main {
-	background: transparent;
+  background: transparent;
 }
 
 .main {
+  text-align: center;
 
-	div#goal-presentation-sample {
-		color: transparent;
-	}
+  div#goal-presentation-sample {
+    color: transparent;
+  }
+  #addTargetBtn {
+    margin-top: 20px;
+  }
+  #target-container {
+    margin: 0 auto;
+    margin-top: 10px;
+    width: calc(100% - 6px);
+    border: 1px solid black;
+    /* filter: blur(3px); */
+    /* filter: drop-shadow(0 0 16px red) */
+    box-shadow: 0px 0px 2px 2px var(--headerAndFooterBgColor);
+
+    .goal-presentation {
+      text-align: left;
+	  padding-left: 5px;
+      &:not(:last-child) {
+        margin-bottom: 10px;
+      }
+	  &:last-child{
+
+		  padding-bottom: 5px;
+		}
+	  
+      h3.name {
+       padding-top: 5px;
+        &:before {
+          content: "Цель:";
+          margin-right: 5px;
+		  font-weight: 300;
+        }
+      }
+	  div.create_date {
+		  padding-top: 5px;
+		 &:before {
+          content: "Дата создания:";
+          margin-right: 5px;
+		  font-weight: 300;
+        }
+	  }
+	  div.finish_date {
+		  padding-bottom: 5px;
+		 &:before {
+          content: "Дата завершения:";
+          margin-right: 5px;
+		  font-weight: 300;
+        }
+	  }
+	  details.step-details {
+		padding: 5px;
+		cursor: pointer;
+	  }
+    }
+  }
 }

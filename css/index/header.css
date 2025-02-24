@@ -1,5 +1,6 @@
 header {
-	background: transparent;
+	background:var(--headerAndFooterBgColor);
+	padding: 5px;
 }
 
 .header {
