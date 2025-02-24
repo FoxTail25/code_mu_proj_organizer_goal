@@ -16,7 +16,8 @@ class PopUpAllWork {
   popUpCloseBtn;
   popUpSaveBtn;
 
-  targetName
+  targetId;
+  targetName;
   targetStartData;
   targetFinishData;
   targetListOfSteps;
@@ -31,25 +32,33 @@ class PopUpAllWork {
     
     this.popUpSaveBtn = this.newPopUpWindow.querySelector("#add-target-btn");
     this.popUpSaveBtn.addEventListener('click', ()=> {
-      console.log('savePopUpBtn')
-      returnDataFromBtn('data')
+      console.log('savePopUpBtn');
+      returnDataFromBtn(this._getPopUpData());
+      this.popUpClose();
   });
   }
 
   _setPopUpData(incomingDataObj) {
-    let targetName = this.newPopUpWindow.querySelector('#target-name');
-    let targetStartData = this.newPopUpWindow.querySelector('#target-start-data');
-    let targetFinishData = this.newPopUpWindow.querySelector('#target-finish-data');
-    let targetListOfSteps = this.newPopUpWindow.querySelector('#steps-to-target')
-    targetName.value = incomingDataObj.name;
-    targetStartData.setAttribute('value', `${incomingDataObj.createDate}`);
-    targetFinishData.setAttribute('value', `${incomingDataObj.finishDate}`);
-    targetListOfSteps.innerHTML ='';
-    incomingDataObj.listOfSteps.forEach(stepToTarget => targetListOfSteps.innerHTML += `<li><button class="update-step" title="редактировать шаг">edit</button><span class="step-text">${stepToTarget}</span><button class="delete-step" title="удалить шаг">d</button></li>`)
+    this.targetName = this.newPopUpWindow.querySelector('#target-name');
+    this.targetStartData = this.newPopUpWindow.querySelector('#target-start-data');
+    this.targetFinishData = this.newPopUpWindow.querySelector('#target-finish-data');
+    this.targetListOfSteps = this.newPopUpWindow.querySelector('#steps-to-target');
+    this.targetId = incomingDataObj.id;
+    this.targetName.value = incomingDataObj.name;
+    this.targetStartData.setAttribute('value', `${incomingDataObj.createDate}`);
+    this.targetFinishData.setAttribute('value', `${incomingDataObj.finishDate}`);
+    this.targetListOfSteps.innerHTML ='';
+    incomingDataObj.listOfSteps.forEach(stepToTarget => this.targetListOfSteps.innerHTML += `<li><button class="update-step" title="редактировать шаг">edit</button><span class="step-text">${stepToTarget}</span><button class="delete-step" title="удалить шаг">d</button></li>`)
 
   }
   _getPopUpData(){
-
+    return {
+      id: this.targetId,
+      name:this.targetName.value,
+      createDate: this.targetStartData.value,
+      finishDate: this.targetFinishData.value,
+      listOfSteps: [...this.targetListOfSteps.children].map((e) => e.children[1].textContent),
+    }
   }
 
   popUpOpen(returnDataFromBtn, incomingDataObj = false) {
