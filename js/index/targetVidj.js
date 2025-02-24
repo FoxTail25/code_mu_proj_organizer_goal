@@ -20,8 +20,8 @@ class TargetVidget {
   }
 
   createTarget(obj, func) {
-    // console.log(obj);
-    // console.log('tt',this.target)
+    
+    
     const newTargetNode = this.target.cloneNode(true)
     newTargetNode.dataset.id = obj.id
       ;[...newTargetNode.children].forEach(htmlElement => {
@@ -67,6 +67,10 @@ class TargetVidget {
     // console.log(elem)
     this.targetContainer.removeChild(elem)
   }
+  resetTargetContainer() {
+    this.targetContainer.innerHTML = ''
+  }
+
 
 }
 
