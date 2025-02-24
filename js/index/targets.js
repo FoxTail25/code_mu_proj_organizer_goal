@@ -16,6 +16,11 @@ class Targets {
     return index;    
   }
 
+  getTarget(obj) {
+    let ind = this._findTargetIndex(obj) 
+    return this.targetList[ind]
+  }
+
   addTarget(obj) {
     let newTarget = { ...this._target, ...obj };
     newTarget.id = nanoid();
@@ -36,6 +41,9 @@ class Targets {
     finishDate: "",
     listOfSteps: [],
   };
+  _getDateString(){
+    
+  }
 }
 
 export const userTarget = new Targets();

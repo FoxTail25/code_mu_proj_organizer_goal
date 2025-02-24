@@ -39,7 +39,9 @@ createTargetList()
 function editTarget(id){
 	console.log('сработала функция editTarget in index.js')
 	console.log(id)
-	popUpWork.popUpOpen(id)
+	let target = userTarget.getTarget({id:[id]})
+	
+	popUpWork.popUpOpen(target)
 }
 // let id = userTarget.getTargetList()[0].id
 

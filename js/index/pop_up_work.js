@@ -19,16 +19,31 @@ class PopUpAllWork {
     this.newPopUpWindow = this.popUpWindow.cloneNode(true);
     this.popUpBg.appendChild(this.newPopUpWindow);
     // console.dir(newPopUpWindow);
-    setTimeout(() =>{
-      this.popUpBg.classList.remove("hide");
-    }, 1) // необходимая отсановка для работы анимации
+    
     this.popUpCloseBtn = this.newPopUpWindow.querySelector("#popUpCloseBtn");
     this.popUpCloseBtn.addEventListener('click', ()=> this.popUpClose());
   }
+  _setPopUpData(incomingDataObj) {
+    console.log(incomingDataObj)
+    let name = this.newPopUpWindow.querySelector('#target-name');
+    let targetStartData = this.newPopUpWindow.querySelector('#target-start-data');
+    name.value = incomingDataObj.name
+    // console.log(incomingDataObj.createDate)
+    targetStartData.setAttribute('value', incomingDataObj.name)
+    // console.log(targetStartData)
+    // targetStartData.value = incomingDataObj.createDate;
+    
 
-  popUpOpen(popUpData = false) {
-    console.log('сработал console.log при открытии popUp', popUpData)
+  }
+
+  popUpOpen(incomingDataObj = false) {
     this._createPopUp();
+    if (incomingDataObj) {
+      this._setPopUpData(incomingDataObj)
+    }
+    setTimeout(() => {
+      this.popUpBg.classList.remove("hide");
+    }, 1) // необходимая отсановка для работы анимации
   }
   popUpClose() {
     this.popUpBg.classList.add("hide");
