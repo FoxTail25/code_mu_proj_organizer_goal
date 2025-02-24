@@ -8,16 +8,17 @@ originalPopUp.parentElement.removeChild(originalPopUp);
 class PopUpAllWork {
   constructor(nodeElement) {
     this.popUpWindow = nodeElement;
-    console.log("pp", this.pop);
+    // console.log("pp", this.pop);
   }
 
   popUpBg = document.getElementById("popUp-bg");
   newPopUpWindow;
-  popUpCloseBtn
+  popUpCloseBtn;
+
   _createPopUp() {
     this.newPopUpWindow = this.popUpWindow.cloneNode(true);
     this.popUpBg.appendChild(this.newPopUpWindow);
-    console.dir(newPopUpWindow);
+    // console.dir(newPopUpWindow);
     setTimeout(() =>{
       this.popUpBg.classList.remove("hide");
     }, 1) // необходимая отсановка для работы анимации
