@@ -31,6 +31,7 @@ class Targets {
   }
   updateTarget(obj) {
     let ind = this._findTargetIndex(obj);
+    console.log('this.targetList[ind]',this.targetList[ind])
     this.targetList[ind] = obj;
   };
 

@@ -40,7 +40,7 @@ function editTarget(id) {
 
 function returnPopUpData(dataFomPopUpBtn) {
   console.log('!!index!!')
-  console.log(dataFomPopUpBtn)
+  console.log(dataFomPopUpBtn.id)
   userTarget.updateTarget(dataFomPopUpBtn)
   goalPresentWork.resetTargetContainer()
   createTargetList()

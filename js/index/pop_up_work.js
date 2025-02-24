@@ -39,6 +39,7 @@ class PopUpAllWork {
   }
 
   _setPopUpData(incomingDataObj) {
+    
     this.targetName = this.newPopUpWindow.querySelector('#target-name');
     this.targetStartData = this.newPopUpWindow.querySelector('#target-start-data');
     this.targetFinishData = this.newPopUpWindow.querySelector('#target-finish-data');
@@ -72,6 +73,7 @@ class PopUpAllWork {
     
   }
   popUpClose() {
+    console.log(this.targetId)
     this.popUpBg.classList.add("hide");
     setTimeout(() => {
       // this.popUpCloseBtn.removeEventListener('click', ()=> this.popUpClose());
