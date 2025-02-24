@@ -20,7 +20,7 @@ class TargetVidget {
   }
 
   createTarget(obj, func) {
-    console.log(obj);
+    // console.log(obj);
     // console.log('tt',this.target)
     const newTargetNode = this.target.cloneNode(true)
     newTargetNode.dataset.id = obj.id
@@ -38,7 +38,7 @@ class TargetVidget {
         } else if (htmlElement.className == 'edit-target-btn') {
           // htmlElement.addEventListener('click', (e)=> console.log('edit', e.target.parentElement.dataset))
           htmlElement.addEventListener('click', (e) => {
-            console.log('edit');
+            // console.log('edit');
             let id = e.target.parentElement.dataset.id
             func(id)
           })
@@ -46,7 +46,7 @@ class TargetVidget {
           htmlElement.addEventListener('click', (e) => {
 
             let id = e.target.parentElement.dataset.id
-            console.log('delete', id)
+            // console.log('delete', id)
 
             this.deleteTarget(id)
           })
@@ -64,7 +64,7 @@ class TargetVidget {
   }
   deleteTarget(id) {
     let elem = this._findTargetById(id)
-    console.log(elem)
+    // console.log(elem)
     this.targetContainer.removeChild(elem)
   }
 

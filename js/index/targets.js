@@ -37,12 +37,21 @@ class Targets {
   _target = {
     id: "",
     name: "",
-    createDate: new Date(),
-    finishDate: "",
+    createDate: this._getDateString(),
+    finishDate: this._getDateString(),
     listOfSteps: [],
   };
   _getDateString(){
-    
+    const date = new Date();
+    const year = date.getFullYear();
+    const month = date.getMonth()+1;
+    const dayNumber = date.getDate();
+    const dateString = `${year}-${this._getTwoSymbol(month)}-${this._getTwoSymbol(dayNumber)}`;
+    // console.log(dateString)
+    return dateString
+  }
+  _getTwoSymbol(num) {
+   return (num += "").padStart(2, 0)
   }
 }
 

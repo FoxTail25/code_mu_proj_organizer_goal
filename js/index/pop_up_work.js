@@ -23,16 +23,21 @@ class PopUpAllWork {
     this.popUpCloseBtn = this.newPopUpWindow.querySelector("#popUpCloseBtn");
     this.popUpCloseBtn.addEventListener('click', ()=> this.popUpClose());
   }
+
   _setPopUpData(incomingDataObj) {
-    console.log(incomingDataObj)
+    // console.log(incomingDataObj)
     let name = this.newPopUpWindow.querySelector('#target-name');
     let targetStartData = this.newPopUpWindow.querySelector('#target-start-data');
-    name.value = incomingDataObj.name
-    // console.log(incomingDataObj.createDate)
-    targetStartData.setAttribute('value', incomingDataObj.name)
-    // console.log(targetStartData)
-    // targetStartData.value = incomingDataObj.createDate;
-    
+    let targetFinishData = this.newPopUpWindow.querySelector('#target-finish-data');
+    let targetListOfSteps = this.newPopUpWindow.querySelector('#steps-to-target')
+    name.value = incomingDataObj.name;
+    targetStartData.setAttribute('value', `${incomingDataObj.createDate}`);
+    targetFinishData.setAttribute('value', `${incomingDataObj.finishDate}`);
+    // console.log([...targetListOfSteps.children])
+    targetListOfSteps.innerHTML ='';
+    // console.log([...targetListOfSteps.children])
+    // console.log(incomingDataObj.listOfSteps)
+    incomingDataObj.listOfSteps.forEach(stepToTarget => targetListOfSteps.innerHTML += `<li><button class="update-step" title="редактировать шаг">edit</button><span class="step-text">${stepToTarget}</span><button class="delete-step" title="удалить шаг">d</button></li>`)
 
   }
 
@@ -44,6 +49,7 @@ class PopUpAllWork {
     setTimeout(() => {
       this.popUpBg.classList.remove("hide");
     }, 1) // необходимая отсановка для работы анимации
+
   }
   popUpClose() {
     this.popUpBg.classList.add("hide");

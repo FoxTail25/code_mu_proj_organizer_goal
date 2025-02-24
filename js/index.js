@@ -11,23 +11,20 @@ addTargetBtn.addEventListener('click', () => popUpWork.popUpOpen())
 userTarget.addTarget({
   id: "",
   name: "target1",
-  createDate: new Date(),
-  finishDate: "",
+//   finishDate: "",
   listOfSteps: [1, 2, 3],
 });
 userTarget.addTarget({
   id: "",
   name: "target2",
-  createDate: new Date(),
-  finishDate: "",
-  listOfSteps: [1, 2, 3],
+  finishDate: "2025-02-26",
+  listOfSteps: [4, 5, 6],
 });
 userTarget.addTarget({
   id: "",
   name: "target3",
-  createDate: new Date(),
-  finishDate: "",
-  listOfSteps: [1, 2, 3],
+	finishDate: "2025-02-28",
+  listOfSteps: [7, 8, 9],
 });
 
 // const target = userTarget.getTargetList()[0];
@@ -37,8 +34,8 @@ function createTargetList(){
 createTargetList()
 
 function editTarget(id){
-	console.log('сработала функция editTarget in index.js')
-	console.log(id)
+	// console.log('сработала функция editTarget in index.js')
+	// console.log(id)
 	let target = userTarget.getTarget({id:[id]})
 	
 	popUpWork.popUpOpen(target)
