@@ -5,8 +5,8 @@ import { goalPresentWork } from "./index/targetVidj.js";
 
 // элементы PopUp
 const addTargetBtn = document.getElementById("addTargetBtn");
-const PopUpCloseBtn = document.getElementById("popUpCloseBtn");
-addTargetBtn.addEventListener('click', () => popUpWork.popUpOpen(returnPopUpData, false))
+// const PopUpCloseBtn = document.getElementById("popUpCloseBtn");
+addTargetBtn.addEventListener('click', () => popUpWork.popUpOpen(returnPopUpData, false));
 
 userTarget.addTarget({
   id: "",
@@ -33,15 +33,15 @@ function createTargetList() {
 createTargetList()
 
 function editTarget(id) {
-  let target = userTarget.getTarget({ id: [id] })
+  let target = userTarget.getTarget({ id: [id] });
 
-  popUpWork.popUpOpen(returnPopUpData, target)
+  popUpWork.popUpOpen(returnPopUpData, target);
 }
 
-function returnPopUpData(dataFomPopUpBtn) {
-  console.log('!!index!!')
-  console.log(dataFomPopUpBtn.id)
-  userTarget.updateTarget(dataFomPopUpBtn)
+function returnPopUpData(dataFomPopUp) {
+  console.log('сработала функция dataFromPopUpBtn')
+  console.log('поле id вернувшегося объекта',dataFomPopUp.id)
+  userTarget.updateTarget(dataFomPopUp)
   goalPresentWork.resetTargetContainer()
   createTargetList()
 }
