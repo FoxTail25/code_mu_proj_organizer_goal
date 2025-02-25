@@ -26,59 +26,73 @@ class PopUpAllWork {
     this.newPopUpWindow = this.popUpWindow.cloneNode(true);
     this.popUpBg.appendChild(this.newPopUpWindow);
     // console.dir(newPopUpWindow);
-    
+
     this.popUpCloseBtn = this.newPopUpWindow.querySelector("#popUpCloseBtn");
-    this.popUpCloseBtn.addEventListener('click', ()=> this.popUpClose());
-    
+    this.popUpCloseBtn.addEventListener("click", () => this.popUpClose());
+
     this.popUpSaveBtn = this.newPopUpWindow.querySelector("#add-target-btn");
-    this.popUpSaveBtn.addEventListener('click', ()=> {
-      console.log('savePopUpBtn');
+    this.popUpSaveBtn.addEventListener("click", () => {
+      console.log("savePopUpBtn");
       returnDataFromBtn(this._getPopUpData());
       this.popUpClose();
-  });
+    });
+
+  }
+  _createConnectVariableAndDomNode(){
+    this.targetName = this.newPopUpWindow.querySelector("#target-name");
+    this.targetStartData =
+      this.newPopUpWindow.querySelector("#target-start-data");
+    this.targetFinishData = this.newPopUpWindow.querySelector(
+      "#target-finish-data"
+    );
+    this.targetListOfSteps =
+      this.newPopUpWindow.querySelector("#steps-to-target");
   }
 
   _setPopUpData(incomingDataObj) {
+    this._createConnectVariableAndDomNode()
     
-    this.targetName = this.newPopUpWindow.querySelector('#target-name');
-    this.targetStartData = this.newPopUpWindow.querySelector('#target-start-data');
-    this.targetFinishData = this.newPopUpWindow.querySelector('#target-finish-data');
-    this.targetListOfSteps = this.newPopUpWindow.querySelector('#steps-to-target');
     this.targetId = incomingDataObj.id;
     this.targetName.value = incomingDataObj.name;
-    this.targetStartData.setAttribute('value', `${incomingDataObj.createDate}`);
-    this.targetFinishData.setAttribute('value', `${incomingDataObj.finishDate}`);
-    this.targetListOfSteps.innerHTML ='';
-    incomingDataObj.listOfSteps.forEach(stepToTarget => this.targetListOfSteps.innerHTML += `<li><button class="update-step" title="редактировать шаг">edit</button><span class="step-text">${stepToTarget}</span><button class="delete-step" title="удалить шаг">d</button></li>`)
-
+    this.targetStartData.setAttribute("value", `${incomingDataObj.createDate}`);
+    this.targetFinishData.setAttribute(
+      "value",
+      `${incomingDataObj.finishDate}`
+    );
+    this.targetListOfSteps.innerHTML = "";
+    incomingDataObj.listOfSteps.forEach(
+      (stepToTarget) =>
+        (this.targetListOfSteps.innerHTML += `<li><button class="update-step" title="редактировать шаг">edit</button><span class="step-text">${stepToTarget}</span><button class="delete-step" title="удалить шаг">d</button></li>`)
+    );
   }
-  _getPopUpData(){
+  _getPopUpData() {
     return {
       id: this.targetId,
-      name:this.targetName.value,
+      name: this.targetName.value,
       createDate: this.targetStartData.value,
       finishDate: this.targetFinishData.value,
-      listOfSteps: [...this.targetListOfSteps.children].map((e) => e.children[1].textContent),
-    }
+      listOfSteps: [...this.targetListOfSteps.children].map(
+        (e) => e.children[1].textContent
+      ),
+    };
   }
 
   popUpOpen(returnDataFromBtn, incomingDataObj = false) {
     this._createPopUp(returnDataFromBtn);
     if (incomingDataObj) {
-      this._setPopUpData(incomingDataObj)
+      this._setPopUpData(incomingDataObj);
     }
     setTimeout(() => {
       this.popUpBg.classList.remove("hide");
-    }, 1) // необходимая отсановка для работы анимации
-    
+    }, 1); // необходимая отсановка для работы анимации
   }
   popUpClose() {
-    console.log(this.targetId)
+    console.log(this.targetId);
     this.popUpBg.classList.add("hide");
     setTimeout(() => {
       // this.popUpCloseBtn.removeEventListener('click', ()=> this.popUpClose());
       this.popUpBg.removeChild(this.newPopUpWindow);
-    }, 500);//время на отработку анимации
+    }, 500); //время на отработку анимации
   }
 
   // addListenerOnTargetSteps() {
@@ -172,9 +186,7 @@ class PopUpAllWork {
   //     li.parentElement.removeChild(li);
   //   }
   // }
-
 }
-
 
 export const popUpWork = new PopUpAllWork(newPopUpWindow);
 
