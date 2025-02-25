@@ -4,9 +4,7 @@ import { localStorageWork } from "./goals/local_stor.js";
 import { userTarget } from "./goals/userTarget.js";
 import { goalPresentWork } from "./goals/goalPresentWork.js";
 
-const addTargetBtn = document.getElementById("addTargetBtn");
-addTargetBtn.addEventListener('click', () => popUpWork.popUpOpen(returnPopUpData, userTarget.getNewTarget()));
-
+document.getElementById("addTargetBtn").addEventListener('click', () => popUpWork.popUpOpen(returnPopUpData, userTarget.getNewTarget()));
 
 
 if (localStorageWork.getRecord()) {
@@ -35,12 +33,13 @@ if (localStorageWork.getRecord()) {
   });
 }
 
-; (function createTargetList() {
-  userTarget.getTargetList().forEach(e => goalPresentWork.createTarget(e, editTarget, deleteTarget))
-})()
+
+createTargetList()
 
 function createTargetList() {
-  userTarget.getTargetList().forEach(e => goalPresentWork.createTarget(e, editTarget, deleteTarget))
+  let targetlist = userTarget.getTargetList()
+  targetlist.forEach(e => goalPresentWork.createTarget(e, editTarget, deleteTarget))
+  localStorageWork.setRecord(targetlist)
 }
 
 function editTarget(id) {

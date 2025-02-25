@@ -1,16 +1,14 @@
 import { nanoid } from "../utils/nanoid/nanoid.js";
 
 class Targets {
-  constructor(localStorSaveFunc){
-    this.saveFunc = localStorSaveFunc
-    console.log(this.saveFunc)
+  constructor(){
+    
   }
   targetList = [];
 
   setTargetList(arr) {
     this.targetList = [...arr];
     console.log(this.targetList)
-    this.saveFunc(this.targetList);
   };
   getTargetList() {
     return this.targetList;
