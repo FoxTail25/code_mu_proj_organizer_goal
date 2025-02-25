@@ -13,13 +13,12 @@ class localStor {
 	}
 
 	_checkRecord(name) {
-		let answer;
-		try {
-			localStorage.getItem(name);
-			answer = true;
-		} catch {
-			answer = false;
+		let answer = true
+		
+		if (localStorage.getItem(this.name) === null) {
+			answer = false
 		}
+		console.log(answer)
 		return answer
 	}
 	_getString(data) {
