@@ -3,28 +3,29 @@ import { localStorageWork } from "./goals/local_stor.js";
 import { userTarget } from "./goals/userTarget.js";
 import { goalPresentWork } from "./goals/goalPresentWork.js";
 
-// элементы PopUp
 const addTargetBtn = document.getElementById("addTargetBtn");
-// const PopUpCloseBtn = document.getElementById("popUpCloseBtn");
 addTargetBtn.addEventListener('click', () => popUpWork.popUpOpen(returnPopUpData, userTarget.getNewTarget()));
 
 userTarget.addTarget({
   id: "",
-  name: "target1",
-  //   finishDate: "",
-  listOfSteps: [1, 2, 3],
+  name: "Frontend разработчик middle",
+  createDate: "2022-07-11",
+  finishDate: "2025-07-11",
+  listOfSteps: ['Изучить HTML', 'Изучить CSS', 'Изучить Js', 'Изучить REACT', 'Изучить Vue', 'Изучить Bootstrap'],
 });
 userTarget.addTarget({
   id: "",
-  name: "target2",
-  finishDate: "2025-02-26",
-  listOfSteps: [4, 5, 6],
+  name: "BackEnd разработчик middle",
+  createDate: "2024-03-01",
+  finishDate: "2026-03-20",
+  listOfSteps: ['Изучить Node.js', 'Изучить SQL', 'Изучить PHP', ],
 });
 userTarget.addTarget({
   id: "",
-  name: "target3",
-  finishDate: "2025-02-28",
-  listOfSteps: [7, 8, 9],
+  name: "Найти достойную работу",
+  createDate: "2025-04-01",
+  finishDate: "2026-02-28",
+  listOfSteps: ["Пройти все бесплатные курсы у прекрасного учителя Дмитрия Трепачёва","Создать более 10 различных Pet-проектов", "Сделать красивый сайт-резюме", "Создать резюме на hh.ru", "Создать резюме на фриланс-платформах"],
 });
 
 function createTargetList() {
@@ -44,7 +45,6 @@ userTarget.deletTarget({id:[id]})
 function returnPopUpData(dataFomPopUp) {
   console.log('сработала функция dataFromPopUpBtn')
   let isNewTarget = (dataFomPopUp.id == '');
-  // console.log('поле id вернувшегося объекта',isNewTarget)
   if(isNewTarget) {
     userTarget.addTarget(dataFomPopUp)
   }
