@@ -1,7 +1,7 @@
-import { popUpWork } from './index/pop_up_work.js';
-import { localStorageWork } from "./index/local_stor.js";
-import { userTarget } from "./index/userTarget.js";
-import { goalPresentWork } from "./index/goalPresentWork.js";
+import { popUpWork } from './goals/popUpWork.js';
+import { localStorageWork } from "./goals/local_stor.js";
+import { userTarget } from "./goals/userTarget.js";
+import { goalPresentWork } from "./goals/goalPresentWork.js";
 
 // элементы PopUp
 const addTargetBtn = document.getElementById("addTargetBtn");

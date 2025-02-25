@@ -17,11 +17,11 @@ class Targets {
   }
 
   getOldTarget(obj) {
-    let ind = this._findTargetIndex(obj) 
-    return this.targetList[ind]
+    let ind = this._findTargetIndex(obj);
+    return this.targetList[ind];
   }
-  getNewTarget(obj) {
-    return this._target
+  getNewTarget() {
+    return this._target;
   }
 
   addTarget(obj) {
@@ -34,7 +34,6 @@ class Targets {
   }
   updateTarget(obj) {
     let ind = this._findTargetIndex(obj);
-    // console.log('this.targetList[ind]',this.targetList[ind])
     this.targetList[ind] = obj;
   };
 
@@ -51,11 +50,10 @@ class Targets {
     const month = date.getMonth()+1;
     const dayNumber = date.getDate();
     const dateString = `${year}-${this._getTwoSymbol(month)}-${this._getTwoSymbol(dayNumber)}`;
-    // console.log(dateString)
-    return dateString
+    return dateString;
   }
   _getTwoSymbol(num) {
-   return (num += "").padStart(2, 0)
+   return (num += "").padStart(2, 0);
   }
 }
 

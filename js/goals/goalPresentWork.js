@@ -19,9 +19,10 @@ class TargetVidget {
   }
 
   createTarget(obj, funcEdit, funcDel ) {
-    const newTargetNode = this.target.cloneNode(true)
-    newTargetNode.dataset.id = obj.id
-      ;[...newTargetNode.children].forEach(htmlElement => {
+    const newTargetNode = this.target.cloneNode(true);
+    newTargetNode.dataset.id = obj.id;
+
+      [...newTargetNode.children].forEach(htmlElement => {
         if (htmlElement.className == 'name') {
 
           htmlElement.textContent = obj.name;
@@ -50,7 +51,6 @@ class TargetVidget {
           htmlElement.addEventListener('click', (e) => {
 
             let id = e.target.parentElement.dataset.id;
-            console.log(id);
             funcDel(id);
             this.deleteTarget(id);
           })
@@ -59,18 +59,18 @@ class TargetVidget {
     this._addTargetInTargetContainer(newTargetNode)
   }
   _addTargetSteps(node, arr) {
-    arr.forEach(e => node.innerHTML += `<div class="step">${e}</div>`)
+    arr.forEach(e => node.innerHTML += `<div class="step">${e}</div>`);
   }
   _findTargetById(id) {
-    let item = this.targetContainer.querySelector(`[data-id="${id}"]`)
-    return item
+    let item = this.targetContainer.querySelector(`[data-id="${id}"]`);
+    return item;
   }
   deleteTarget(id) {
-    let elem = this._findTargetById(id)
-    this.targetContainer.removeChild(elem)
+    let elem = this._findTargetById(id);
+    this.targetContainer.removeChild(elem);
   }
   resetTargetContainer() {
-    this.targetContainer.innerHTML = ''
+    this.targetContainer.innerHTML = '';
   }
 }
 
