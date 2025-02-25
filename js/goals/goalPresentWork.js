@@ -30,11 +30,11 @@ class TargetVidget {
         }
         else if (htmlElement.className == 'create_date') {
 
-          htmlElement.textContent = obj.createDate;
+          htmlElement.textContent = this._createTimeView('ru', obj.createDate);
         }
         else if (htmlElement.className == 'finish_date') {
 
-          htmlElement.textContent = obj.finishDate;
+          htmlElement.textContent = this._createTimeView('ru', obj.finishDate);
 
         } else if (htmlElement.className == 'step-details') {
 
@@ -59,7 +59,10 @@ class TargetVidget {
     this._addTargetInTargetContainer(newTargetNode)
   }
   _addTargetSteps(node, arr) {
-    arr.forEach(e => node.innerHTML += `<div class="step">${e}</div>`);
+    let ol = document.createElement('ol')
+    arr.forEach(e => ol.innerHTML += `<li class="step">${e}</li>`);
+
+    node.appendChild(ol);
   }
   _findTargetById(id) {
     let item = this.targetContainer.querySelector(`[data-id="${id}"]`);
@@ -71,6 +74,13 @@ class TargetVidget {
   }
   resetTargetContainer() {
     this.targetContainer.innerHTML = '';
+  }
+  _createTimeView(string, timeString){
+    let view;
+    if(string === 'ru') {
+     view = timeString.split('-').reverse();
+    }
+    return view.join('-')
   }
 }
 
