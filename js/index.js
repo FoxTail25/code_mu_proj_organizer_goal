@@ -1,12 +1,12 @@
 import { popUpWork } from './index/pop_up_work.js';
 import { localStorageWork } from "./index/local_stor.js";
 import { userTarget } from "./index/targets.js";
-import { goalPresentWork } from "./index/targetVidj.js";
+import { goalPresentWork } from "./index/goalPresentWork.js";
 
 // элементы PopUp
 const addTargetBtn = document.getElementById("addTargetBtn");
 // const PopUpCloseBtn = document.getElementById("popUpCloseBtn");
-addTargetBtn.addEventListener('click', () => popUpWork.popUpOpen(returnPopUpData, false));
+addTargetBtn.addEventListener('click', () => popUpWork.popUpOpen(returnPopUpData, userTarget.getNewTarget()));
 
 userTarget.addTarget({
   id: "",
@@ -28,20 +28,29 @@ userTarget.addTarget({
 });
 
 function createTargetList() {
-  userTarget.getTargetList().forEach(e => goalPresentWork.createTarget(e, editTarget))
+  userTarget.getTargetList().forEach(e => goalPresentWork.createTarget(e, editTarget, deleteTarget))
 }
 createTargetList()
 
 function editTarget(id) {
-  let target = userTarget.getTarget({ id: [id] });
-
+  let target = userTarget.getOldTarget({ id: [id] });
   popUpWork.popUpOpen(returnPopUpData, target);
+}
+
+function deleteTarget(id) {
+userTarget.deletTarget({id:[id]})
 }
 
 function returnPopUpData(dataFomPopUp) {
   console.log('сработала функция dataFromPopUpBtn')
-  console.log('поле id вернувшегося объекта',dataFomPopUp.id)
+  let isNewTarget = (dataFomPopUp.id == '');
+  // console.log('поле id вернувшегося объекта',isNewTarget)
+  if(isNewTarget) {
+    userTarget.addTarget(dataFomPopUp)
+  }
   userTarget.updateTarget(dataFomPopUp)
   goalPresentWork.resetTargetContainer()
   createTargetList()
 }
+
+

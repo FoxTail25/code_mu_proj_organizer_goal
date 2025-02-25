@@ -8,7 +8,7 @@ originalPopUp.parentElement.removeChild(originalPopUp);
 class PopUpAllWork {
   constructor(nodeElement) {
     this.popUpWindow = nodeElement;
-    // console.log("pp", this.pop);
+    
   }
 
   popUpBg = document.getElementById("popUp-bg");
@@ -32,41 +32,36 @@ class PopUpAllWork {
 
     this.popUpSaveBtn = this.newPopUpWindow.querySelector("#add-target-btn");
     this.popUpSaveBtn.addEventListener("click", () => {
-      console.log("savePopUpBtn");
-      returnDataFromBtn(this._getPopUpData());
-      this.popUpClose();
+      // console.log("savePopUpBtn");
+      if (this._checkPopUpData()) {
+        returnDataFromBtn(this._getPopUpData());
+        this.popUpClose();
+      }
     });
 
+    this._connectVariableAndDomNode()
+
   }
-  _createConnectVariableAndDomNode(){
+  _connectVariableAndDomNode() {
     this.targetName = this.newPopUpWindow.querySelector("#target-name");
-    this.targetStartData =
-      this.newPopUpWindow.querySelector("#target-start-data");
-    this.targetFinishData = this.newPopUpWindow.querySelector(
-      "#target-finish-data"
-    );
-    this.targetListOfSteps =
-      this.newPopUpWindow.querySelector("#steps-to-target");
+    this.targetStartData = this.newPopUpWindow.querySelector("#target-start-data");
+    this.targetFinishData = this.newPopUpWindow.querySelector("#target-finish-data");
+    this.targetListOfSteps = this.newPopUpWindow.querySelector("#steps-to-target");
   }
 
   _setPopUpData(incomingDataObj) {
-    this._createConnectVariableAndDomNode()
-    
+
     this.targetId = incomingDataObj.id;
     this.targetName.value = incomingDataObj.name;
     this.targetStartData.setAttribute("value", `${incomingDataObj.createDate}`);
-    this.targetFinishData.setAttribute(
-      "value",
-      `${incomingDataObj.finishDate}`
-    );
+    this.targetFinishData.setAttribute("value", `${incomingDataObj.finishDate}`);
     this.targetListOfSteps.innerHTML = "";
-    incomingDataObj.listOfSteps.forEach(
-      (stepToTarget) =>
-        (this.targetListOfSteps.innerHTML += `<li><button class="update-step" title="редактировать шаг">edit</button><span class="step-text">${stepToTarget}</span><button class="delete-step" title="удалить шаг">d</button></li>`)
+    incomingDataObj.listOfSteps.forEach((stepToTarget) => (this.targetListOfSteps.innerHTML += `<li><button class="update-step" title="редактировать шаг">edit</button><span class="step-text">${stepToTarget}</span><button class="delete-step" title="удалить шаг">d</button></li>`)
     );
   }
   _getPopUpData() {
-    console.log(this.targetId)
+    console.log('Сработала функция _getPopUpData')
+
     return {
       id: this.targetId,
       name: this.targetName.value,
@@ -78,6 +73,25 @@ class PopUpAllWork {
     };
   }
 
+  _checkPopUpData() {
+    console.log('сработала функция _checkPopUpData')
+    if (this.targetName.value == '') {
+      this._openWarningPopUp('не заполнено имя цели')
+      return false
+    }
+    return true
+  }
+
+  _openWarningPopUp(string){
+    document.querySelector('#popup-warning-bg').classList.remove('hide');
+    document.querySelector('.warning-window').innerHTML = `${string} <button id="warnin-btn-close">Всё ясно!</button>`;
+    document.querySelector('#warnin-btn-close').addEventListener('click', function closeWarningPopUp() {
+      document.querySelector('#popup-warning-bg').classList.add('hide')
+      document.querySelector('#warnin-btn-close').removeEventListener('click', closeWarningPopUp)
+    })
+  }
+
+
   popUpOpen(returnDataFromBtn, incomingDataObj = false) {
     this._createPopUp(returnDataFromBtn);
     if (incomingDataObj) {
@@ -88,7 +102,7 @@ class PopUpAllWork {
     }, 1); // необходимая отсановка для работы анимации
   }
   popUpClose() {
-    console.log(this.targetId);
+    console.log('Сработала функция popUpClose');
     this.popUpBg.classList.add("hide");
     setTimeout(() => {
       // this.popUpCloseBtn.removeEventListener('click', ()=> this.popUpClose());

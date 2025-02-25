@@ -16,9 +16,12 @@ class Targets {
     return index;    
   }
 
-  getTarget(obj) {
+  getOldTarget(obj) {
     let ind = this._findTargetIndex(obj) 
     return this.targetList[ind]
+  }
+  getNewTarget(obj) {
+    return this._target
   }
 
   addTarget(obj) {
@@ -31,7 +34,7 @@ class Targets {
   }
   updateTarget(obj) {
     let ind = this._findTargetIndex(obj);
-    console.log('this.targetList[ind]',this.targetList[ind])
+    // console.log('this.targetList[ind]',this.targetList[ind])
     this.targetList[ind] = obj;
   };
 
