@@ -1,6 +1,6 @@
 import { popUpWork } from './index/pop_up_work.js';
 import { localStorageWork } from "./index/local_stor.js";
-import { userTarget } from "./index/targets.js";
+import { userTarget } from "./index/userTarget.js";
 import { goalPresentWork } from "./index/goalPresentWork.js";
 
 // элементы PopUp

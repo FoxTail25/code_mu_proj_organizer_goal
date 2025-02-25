@@ -8,7 +8,7 @@ originalPopUp.parentElement.removeChild(originalPopUp);
 class PopUpAllWork {
   constructor(nodeElement) {
     this.popUpWindow = nodeElement;
-    
+
   }
 
   popUpBg = document.getElementById("popUp-bg");
@@ -58,6 +58,7 @@ class PopUpAllWork {
     this.targetListOfSteps.innerHTML = "";
     incomingDataObj.listOfSteps.forEach((stepToTarget) => (this.targetListOfSteps.innerHTML += `<li><button class="update-step" title="редактировать шаг">edit</button><span class="step-text">${stepToTarget}</span><button class="delete-step" title="удалить шаг">d</button></li>`)
     );
+    this.addListenerOnTargetSteps()
   }
   _getPopUpData() {
     console.log('Сработала функция _getPopUpData')
@@ -82,7 +83,7 @@ class PopUpAllWork {
     return true
   }
 
-  _openWarningPopUp(string){
+  _openWarningPopUp(string) {
     document.querySelector('#popup-warning-bg').classList.remove('hide');
     document.querySelector('.warning-window').innerHTML = `${string} <button id="warnin-btn-close">Всё ясно!</button>`;
     document.querySelector('#warnin-btn-close').addEventListener('click', function closeWarningPopUp() {
@@ -110,97 +111,111 @@ class PopUpAllWork {
     }, 500); //время на отработку анимации
   }
 
-  // addListenerOnTargetSteps() {
-  //     console.log("сработал addListenerOnTargetSteps");
-  //     this._stepsAddListenerToUpdateBtn();
-  //     this._stepsAddListenerToDeleteBtn();
-  //   }
-  //   _stepsAddListenerToUpdateBtn() {
-  //     let arrUpdateBtn = [...this.stepsToTarget.children].map(
-  //       (e) => e.children[0]
-  //     );
-  //     arrUpdateBtn.forEach((e) =>
-  //       e.addEventListener("click", _changeSpanToInput)
-  //     );
 
-  //     let arrSpan = [...this.stepsToTarget.children].map((e) => e.children[1]);
-  //     arrSpan.forEach((e) => e.addEventListener("click", _changeSpanToInput));
 
-  //     function _changeSpanToInput(event) {
-  //     //   console.log('_changeSpanToInput');
-  //     //   console.log(event);
-  //     //   console.dir(event.target);
-  //       let changeBtn;
-  //       if (event.target.nodeName == "BUTTON") {
-  //         changeBtn = event.target;
-  //       }
-  //       if (event.target.nodeName == "SPAN") {
-  //         changeBtn = event.target.previousSibling;
-  //       }
-  //       let input = document.createElement("input");
-  //       let parentElem = event.target.parentElement;
-  //       let span = parentElem.querySelector("span");
-  //       let info = span.textContent;
-  //       input.value = info;
-  //       parentElem.removeChild(span);
-  //       changeBtn.insertAdjacentElement("afterend", input);
-  //       input.focus();
-  //       changeBtn.removeEventListener("click", _changeSpanToInput);
-  //       changeBtn.classList.remove("add-step");
-  //       changeBtn.classList.add("save-step");
-  //       changeBtn.setAttribute("title", "сохранить");
-  //       changeBtn.addEventListener("click", _saveUpdatedStep);
-  //       changeBtn.nextSibling.addEventListener("blur", blur);
-  //     }
-  //     function blur(e) {
-  //     //   console.log("blur");
-  //       let flag = true;
-  //       try {
-  //         flag = e.relatedTarget.className != "update-step save-step";
-  //   	// console.log(flag)
-  //   } catch {
-  //   	flag = true;
-  //   }
-  //   if (flag) {
-  //   	//   console.log(flag)
-  //         _saveUpdatedStep();
-  //       }
-  //     }
-  //     function _saveUpdatedStep(event) {
-  //       let saveBtn;
-  //       if (event?.target.innerHTML == "edit") {
-  //         saveBtn = event.target;
-  //       } else {
-  //         saveBtn = document.querySelector("button.save-step");
-  //       }
-  //       let span = document.createElement("span");
-  //       let parentElem = saveBtn.parentElement;
-  //       let input = saveBtn.nextSibling;
-  //       let info = input.value;
-  //       span.textContent = info;
-  //       parentElem.removeChild(input);
-  //       saveBtn.insertAdjacentElement("afterend", span);
-  //       saveBtn.classList.remove("save-step");
-  //       saveBtn.classList.add("add-step");
-  //       saveBtn.setAttribute("title", "редактировать");
 
-  //       saveBtn.nextSibling.removeEventListener("blur", blur);
-  //       saveBtn.nextSibling.addEventListener("click", _changeSpanToInput);
-  //       saveBtn.removeEventListener("click", _saveUpdatedStep);
-  //       saveBtn.addEventListener("click", _changeSpanToInput);
-  //     }
-  //   }
-  // _stepsAddListenerToDeleteBtn() {
-  //   let arrDeleteBtn = [...this.stepsToTarget.children].map(
-  //     (e) => e.children[2]
-  //   );
-  //   // console.log("сработал _stepsDeleteeBtn", arrDeleteBtn);
-  //   arrDeleteBtn.forEach((e) => e.addEventListener("click", deleteStep));
-  //   function deleteStep(e) {
-  //     let li = e.target.parentElement;
-  //     li.parentElement.removeChild(li);
-  //   }
-  // }
+
+  addListenerOnTargetSteps() {
+    console.log("сработал addListenerOnTargetSteps");
+    this._stepsAddListenerToUpdateBtn();
+    this._stepsAddListenerToDeleteBtn();
+  }
+  _stepsAddListenerToUpdateBtn() {
+    console.log("сработал _stepsAddListenerToUpdateBtn");
+
+    // let arrUpdateBtn = [...this.stepsToTarget.children].map(
+    let arrUpdateBtn = [...this.targetListOfSteps.children].map(
+      (e) => e.children[0]
+    );
+    arrUpdateBtn.forEach((e) =>
+      e.addEventListener("click", _changeSpanToInput)
+    );
+
+    let arrSpan = [...this.targetListOfSteps.children].map((e) => e.children[1]);
+    arrSpan.forEach((e) => e.addEventListener("click", _changeSpanToInput));
+
+    function _changeSpanToInput(event) {
+      //   console.log('_changeSpanToInput');
+      //   console.log(event);
+      //   console.dir(event.target);
+      let changeBtn;
+      if (event.target.nodeName == "BUTTON") {
+        changeBtn = event.target;
+      }
+      if (event.target.nodeName == "SPAN") {
+        changeBtn = event.target.previousSibling;
+      }
+      let input = document.createElement("input");
+      let parentElem = event.target.parentElement;
+      let span = parentElem.querySelector("span");
+      let info = span.textContent;
+      input.value = info;
+      parentElem.removeChild(span);
+      changeBtn.insertAdjacentElement("afterend", input);
+      input.focus();
+      changeBtn.removeEventListener("click", _changeSpanToInput);
+      changeBtn.classList.remove("add-step");
+      changeBtn.classList.add("save-step");
+      changeBtn.setAttribute("title", "сохранить");
+      changeBtn.addEventListener("click", _saveUpdatedStep);
+      changeBtn.nextSibling.addEventListener("blur", blur);
+    }
+    function blur(e) {
+      let flag = true;
+
+      if (e.relatedTarget == null) {
+        flag = true;
+      } else {
+        flag = e.relatedTarget.className != "update-step save-step"
+      }
+      console.log(e.relatedTarget == null)
+
+      // try {
+      //   flag = e.relatedTarget.className != "update-step save-step";
+      // } catch {
+      //   flag = true;
+      // }
+      
+      if (flag) {
+        _saveUpdatedStep();
+      }
+
+    }
+    function _saveUpdatedStep(event) {
+      let saveBtn;
+      if (event?.target.innerHTML == "edit") {
+        saveBtn = event.target;
+      } else {
+        saveBtn = document.querySelector("button.save-step");
+      }
+      let span = document.createElement("span");
+      let parentElem = saveBtn.parentElement;
+      let input = saveBtn.nextSibling;
+      let info = input.value;
+      span.textContent = info;
+      parentElem.removeChild(input);
+      saveBtn.insertAdjacentElement("afterend", span);
+      saveBtn.classList.remove("save-step");
+      saveBtn.classList.add("add-step");
+      saveBtn.setAttribute("title", "редактировать");
+
+      saveBtn.nextSibling.removeEventListener("blur", blur);
+      saveBtn.nextSibling.addEventListener("click", _changeSpanToInput);
+      saveBtn.removeEventListener("click", _saveUpdatedStep);
+      saveBtn.addEventListener("click", _changeSpanToInput);
+    }
+  }
+  _stepsAddListenerToDeleteBtn() {
+    let arrDeleteBtn = [...this.targetListOfSteps.children].map(
+      (e) => e.children[2]
+    );
+    // console.log("сработал _stepsDeleteeBtn", arrDeleteBtn);
+    arrDeleteBtn.forEach((e) => e.addEventListener("click", deleteStep));
+    function deleteStep(e) {
+      let li = e.target.parentElement;
+      li.parentElement.removeChild(li);
+    }
+  }
 }
 
 export const popUpWork = new PopUpAllWork(newPopUpWindow);
