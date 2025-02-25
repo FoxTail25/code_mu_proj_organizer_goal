@@ -15,6 +15,7 @@ class PopUpAllWork {
   newPopUpWindow;
   popUpCloseBtn;
   popUpSaveBtn;
+  addStepInListBtn;
 
   targetId;
   targetName;
@@ -41,6 +42,8 @@ class PopUpAllWork {
 
     this._connectVariableAndDomNode()
 
+    this.addStepInListBtn = this.newPopUpWindow.querySelector("#add-step")
+    this.addStepInListBtn.addEventListener('click', () => this._addStepInListOfStep())
   }
   _connectVariableAndDomNode() {
     this.targetName = this.newPopUpWindow.querySelector("#target-name");
@@ -93,6 +96,7 @@ class PopUpAllWork {
   }
 
 
+
   popUpOpen(returnDataFromBtn, incomingDataObj = false) {
     this._createPopUp(returnDataFromBtn);
     if (incomingDataObj) {
@@ -135,9 +139,7 @@ class PopUpAllWork {
     arrSpan.forEach((e) => e.addEventListener("click", _changeSpanToInput));
 
     function _changeSpanToInput(event) {
-      //   console.log('_changeSpanToInput');
-      //   console.log(event);
-      //   console.dir(event.target);
+
       let changeBtn;
       if (event.target.nodeName == "BUTTON") {
         changeBtn = event.target;
@@ -175,7 +177,7 @@ class PopUpAllWork {
       // } catch {
       //   flag = true;
       // }
-      
+
       if (flag) {
         _saveUpdatedStep();
       }
@@ -215,6 +217,16 @@ class PopUpAllWork {
       let li = e.target.parentElement;
       li.parentElement.removeChild(li);
     }
+  }
+
+
+  _addStepInListOfStep() {
+    console.log('сработала кнопка добавить шаг к достижению цели');
+    console.log(this.targetListOfSteps)
+    this.targetListOfSteps.innerHTML += `<li><button class="update-step" title="редактировать шаг">edit</button><span class="step-text">Новый шаг к достижению цели</span><button class="delete-step" title="удалить шаг">d</button></li>`
+    console.log(this.targetListOfSteps)
+    console.dir(this.targetListOfSteps)
+    this.addListenerOnTargetSteps()
   }
 }
 
