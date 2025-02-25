@@ -66,6 +66,7 @@ class PopUpAllWork {
     );
   }
   _getPopUpData() {
+    console.log(this.targetId)
     return {
       id: this.targetId,
       name: this.targetName.value,
