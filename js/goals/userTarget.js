@@ -63,5 +63,5 @@ class Targets {
   }
 }
 
-// export const userTarget = new Targets();
-export default Targets;
+export const userTarget = new Targets();
+// export default Targets;

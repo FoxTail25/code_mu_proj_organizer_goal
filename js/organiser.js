@@ -1,10 +1,8 @@
 import { popUpWork } from './goals/popUpWork.js';
 import { localStorageWork } from "./goals/local_stor.js";
 // import { userTarget } from "./goals/userTarget.js";
-import  Targets  from "./goals/userTarget.js";
+import { userTarget } from "./goals/userTarget.js";
 import { goalPresentWork } from "./goals/goalPresentWork.js";
-
-const userTarget = new Targets()
 
 const addTargetBtn = document.getElementById("addTargetBtn");
 addTargetBtn.addEventListener('click', () => popUpWork.popUpOpen(returnPopUpData, userTarget.getNewTarget()));
@@ -41,7 +39,9 @@ if (localStorageWork.getRecord()) {
   userTarget.getTargetList().forEach(e => goalPresentWork.createTarget(e, editTarget, deleteTarget))
 })()
 
-
+function createTargetList() {
+  userTarget.getTargetList().forEach(e => goalPresentWork.createTarget(e, editTarget, deleteTarget))
+}
 
 function editTarget(id) {
   let target = userTarget.getOldTarget({ id: [id] });
