@@ -18,44 +18,44 @@ class TargetVidget {
     this.targetContainer.appendChild(target);
   }
 
-  createTarget(obj, funcEdit, funcDel ) {
+  createTarget(obj, funcEdit, funcDel) {
     const newTargetNode = this.target.cloneNode(true);
     newTargetNode.dataset.id = obj.id;
 
-      [...newTargetNode.children].forEach(htmlElement => {
-        if (htmlElement.className == 'name') {
+    [...newTargetNode.children].forEach(htmlElement => {
+      if (htmlElement.className == 'name') {
 
-          htmlElement.textContent = obj.name;
-          
-        }
-        else if (htmlElement.className == 'create_date') {
+        htmlElement.textContent = obj.name;
 
-          htmlElement.textContent = this._createTimeView('ru', obj.createDate);
-        }
-        else if (htmlElement.className == 'finish_date') {
+      }
+      else if (htmlElement.className == 'create_date') {
 
-          htmlElement.textContent = this._createTimeView('ru', obj.finishDate);
+        htmlElement.textContent = this._createTimeView('ru', obj.createDate);
+      }
+      else if (htmlElement.className == 'finish_date') {
 
-        } else if (htmlElement.className == 'step-details') {
+        htmlElement.textContent = this._createTimeView('ru', obj.finishDate);
 
-          this._addTargetSteps(htmlElement, obj.listOfSteps);
+      } else if (htmlElement.className == 'step-details') {
 
-        } else if (htmlElement.className == 'edit-target-btn') {
-          
-          htmlElement.addEventListener('click', (e) => {
-            let id = e.target.parentElement.dataset.id;
-            funcEdit(id);
+        this._addTargetSteps(htmlElement, obj.listOfSteps);
 
-          })
-        } else if (htmlElement.className == 'delete-target-btn') {
-          htmlElement.addEventListener('click', (e) => {
+      } else if (htmlElement.className == 'edit-target-btn') {
 
-            let id = e.target.parentElement.dataset.id;
-            funcDel(id);
-            this.deleteTarget(id);
-          })
-        }
-      })
+        htmlElement.addEventListener('click', (e) => {
+          let id = e.target.parentElement.dataset.id;
+          funcEdit(id);
+
+        })
+      } else if (htmlElement.className == 'delete-target-btn') {
+        htmlElement.addEventListener('click', (e) => {
+
+          let id = e.target.parentElement.dataset.id;
+          funcDel(id);
+          this.deleteTarget(id);
+        })
+      }
+    })
     this._addTargetInTargetContainer(newTargetNode)
   }
   _addTargetSteps(node, arr) {
@@ -75,10 +75,10 @@ class TargetVidget {
   resetTargetContainer() {
     this.targetContainer.innerHTML = '';
   }
-  _createTimeView(string, timeString){
+  _createTimeView(string, timeString) {
     let view;
-    if(string === 'ru') {
-     view = timeString.split('-').reverse();
+    if (string === 'ru') {
+      view = timeString.split('-').reverse();
     }
     return view.join('-')
   }
