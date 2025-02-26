@@ -51,7 +51,6 @@ function deleteTarget(id) {
 }
 
 function returnPopUpData(dataFomPopUp) {
-  console.log('сработала функция dataFromPopUpBtn')
   let isNewTarget = (dataFomPopUp.id == '');
   if (isNewTarget) {
     userTarget.addTarget(dataFomPopUp)

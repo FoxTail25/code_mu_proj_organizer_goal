@@ -18,7 +18,6 @@ class localStor {
 		if (localStorage.getItem(this.name) === null) {
 			answer = false
 		}
-		console.log(answer)
 		return answer
 	}
 	_getString(data) {

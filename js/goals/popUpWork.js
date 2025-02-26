@@ -26,14 +26,12 @@ class PopUpAllWork {
   _createPopUp(returnDataFromBtn) {
     this.newPopUpWindow = this.popUpWindow.cloneNode(true);
     this.popUpBg.appendChild(this.newPopUpWindow);
-    // console.dir(newPopUpWindow);
 
     this.popUpCloseBtn = this.newPopUpWindow.querySelector("#popUpCloseBtn");
     this.popUpCloseBtn.addEventListener("click", () => this.popUpClose());
 
     this.popUpSaveBtn = this.newPopUpWindow.querySelector("#add-target-btn");
     this.popUpSaveBtn.addEventListener("click", () => {
-      // console.log("savePopUpBtn");
       if (this._checkPopUpData()) {
         returnDataFromBtn(this._getPopUpData());
         this.popUpClose();
@@ -63,7 +61,6 @@ class PopUpAllWork {
     this.addListenerOnTargetSteps();
   }
   _getPopUpData() {
-    console.log('Сработала функция _getPopUpData');
 
     return {
       id: this.targetId,
@@ -163,13 +160,6 @@ class PopUpAllWork {
       } else {
         flag = e.relatedTarget.className != "update-step save-step"
       }
-      // console.log(e.relatedTarget == null)
-
-      // try {
-      //   flag = e.relatedTarget.className != "update-step save-step";
-      // } catch {
-      //   flag = true;
-      // }
 
       if (flag) {
         _saveUpdatedStep();
@@ -213,7 +203,6 @@ class PopUpAllWork {
 
 
   _addStepInListOfStep() {
-    console.log('сработала кнопка добавить шаг к достижению цели');
     this.targetListOfSteps.innerHTML += `<li><button class="update-step" title="редактировать шаг">edit</button><span class="step-text">Новый шаг к достижению цели</span><button class="delete-step" title="удалить шаг">d</button></li>`;
     this.addListenerOnTargetSteps();
   }

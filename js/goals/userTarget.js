@@ -8,7 +8,6 @@ class Targets {
 
   setTargetList(arr) {
     this.targetList = [...arr];
-    console.log(this.targetList)
   };
   getTargetList() {
     return this.targetList;
