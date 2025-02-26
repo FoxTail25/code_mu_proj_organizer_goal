@@ -203,8 +203,20 @@ class PopUpAllWork {
 
 
   _addStepInListOfStep() {
-    this.targetListOfSteps.innerHTML += `<li><button class="update-step" title="редактировать шаг">edit</button><span class="step-text">Новый шаг к достижению цели</span><button class="delete-step" title="удалить шаг">d</button></li>`;
-    this.addListenerOnTargetSteps();
+    if(this._checkingLastStep()) {
+      this.targetListOfSteps.innerHTML += `<li><button class="update-step" title="редактировать шаг">edit</button><span class="step-text">Новый шаг к цели</span><button class="delete-step" title="удалить шаг">d</button></li>`;
+      this.addListenerOnTargetSteps();
+    } else {
+      this._openWarningPopUp(`Прошлый шаг не заполнен. Нажмите на 
+          <img src="./img/ico/writebtn.svg" alt="символ редактирования">
+          и отредактируйте предыдущий шаг.`)
+    }
+  }
+  _checkingLastStep(){
+    let lastIndex = [...this.targetListOfSteps.children].length - 1
+    let lastStepNodeElement = this.targetListOfSteps.children[lastIndex]
+    let strInSpanOrInput = lastStepNodeElement.children[1].textContent
+    return strInSpanOrInput !== 'Новый шаг к цели'
   }
 }
 
