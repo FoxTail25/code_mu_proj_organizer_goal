@@ -9,6 +9,7 @@ document.getElementById("addTargetBtn").addEventListener('click', () => popUpWor
 
 if (localStorageWork.getRecord()) {
   userTarget.setTargetList(localStorageWork.getRecord())
+  console.log(localStorageWork.getRecord())
 } else {
   userTarget.addTarget({
     id: "",
@@ -47,7 +48,9 @@ function editTarget(id) {
   popUpWork.popUpOpen(returnPopUpData, target);
 }
 function deleteTarget(id) {
-  userTarget.deletTarget({ id: [id] })
+  let data = userTarget.deletTarget({ id: [id] })
+  localStorageWork.setRecord(data);
+
 }
 
 function returnPopUpData(dataFomPopUp) {

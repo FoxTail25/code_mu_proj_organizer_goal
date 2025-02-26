@@ -34,6 +34,7 @@ class Targets {
   };
   deletTarget(obj) {
     this.targetList.splice(this._findTargetIndex(obj), 1);
+    return this.targetList
   }
   updateTarget(obj) {
     let ind = this._findTargetIndex(obj);
